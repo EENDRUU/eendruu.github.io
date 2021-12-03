@@ -21,13 +21,15 @@
             ErrElem = document.getElementById('err');
 
             // TODO: Replace firebaseConfig you get from Firebase Console
-            var firebaseConfig = {
-                // apiKey: ...
-                // projectId: ...
-                // messagingSenderId: ...
-                // appId: ...
-                // ...other configs...
-            };
+            const firebaseConfig = {
+                apiKey: "AIzaSyDdJU15wu-o9vxBoxrEjVDuDobX5Laddz8",
+                authDomain: "notificationidm.firebaseapp.com",
+                projectId: "notificationidm",
+                storageBucket: "notificationidm.appspot.com",
+                messagingSenderId: "907785559629",
+                appId: "1:907785559629:web:69a6786819eaa563318604",
+                measurementId: "G-RNEH6ZGNW8"
+                };
             firebase.initializeApp(firebaseConfig);
 
             const messaging = firebase.messaging();
