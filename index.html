@@ -55,8 +55,6 @@
 
             let enableForegroundNotification = true;
             messaging.onMessage(function (payload) {
-                
-
                 if (enableForegroundNotification) {
                     let notification = payload.notification;
                     const notificationOptions = {
