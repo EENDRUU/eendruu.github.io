@@ -56,7 +56,7 @@
             let enableForegroundNotification = true;
             messaging.onMessage(function (payload) {
                 if (enableForegroundNotification) {
-                    let notification = payload.notification;
+                    //let notification = payload.notification;
                     navigator.serviceWorker
                         .getRegistrations()
                         .then((registration) => {
