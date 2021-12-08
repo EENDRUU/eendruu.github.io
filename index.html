@@ -55,17 +55,16 @@
 
             let enableForegroundNotification = true;
             messaging.onMessage(function (payload) {
+                console.log('Message received. ', payload);
+                NotisElem.innerHTML =
+                    NotisElem.innerHTML + JSON.stringify(payload);
+
                 if (enableForegroundNotification) {
                     let notification = payload.notification;
-                    const notificationTitle = notification.title;
-                    const notificationOptions = {
-                        body: notification.body,
-                        icon: notification.logo,
-                    };
                     navigator.serviceWorker
                         .getRegistrations()
                         .then((registration) => {
-                            registration[0].showNotification( notificationTitle,notificationOptions,);
+                            registration[0].showNotification(notification.title);
                         });
                 }
             });
