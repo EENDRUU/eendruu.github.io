@@ -62,7 +62,7 @@
                 if (enableForegroundNotification) {
                     let notification = payload.notification;
                     const notificationOptions = {
-                        body: "Background Message body.",
+                        body: notification.body,
                         icon: "logo.png",
                     };
                     navigator.serviceWorker
