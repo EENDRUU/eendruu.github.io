@@ -55,12 +55,14 @@
 
             let enableForegroundNotification = true;
             messaging.onMessage(function (payload) {
-                console.log('Message received. ', payload);
-                NotisElem.innerHTML =
-                    NotisElem.innerHTML + JSON.stringify(payload);
+                
 
                 if (enableForegroundNotification) {
                     let notification = payload.notification;
+                    const notificationOptions = {
+                        body: notification.body,
+                        icon: "logo.png",
+                    };
                     navigator.serviceWorker
                         .getRegistrations()
                         .then((registration) => {
