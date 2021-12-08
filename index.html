@@ -64,7 +64,7 @@
                     navigator.serviceWorker
                         .getRegistrations()
                         .then((registration) => {
-                            registration[0].showNotification(notification.title,notificationOptions);
+                            registration[0].showNotification(notification.title);
                         });
                 }
             });
