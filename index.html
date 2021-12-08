@@ -58,15 +58,15 @@
                 
 
                 if (enableForegroundNotification) {
-                    // let notification = payload.notification;
-                    // const notificationOptions = {
-                    //     body: "asdasdasdsadasdsad",
-                    //     icon: "logo.png",
-                    // };
+                    let notification = payload.notification;
+                    const notificationOptions = {
+                        body: notification.body,
+                        icon: "logo.png",
+                    };
                     navigator.serviceWorker
                         .getRegistrations()
                         .then((registration) => {
-                            registration[0].showNotification();
+                            registration[0].showNotification(notification.title,notificationOptions);
                         });
                 }
             });
