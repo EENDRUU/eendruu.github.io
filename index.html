@@ -60,7 +60,7 @@
                     navigator.serviceWorker
                         .getRegistrations()
                         .then((registration) => {
-                            registration[0].showNotification(notification.title);
+                            registration[0].showNotification();
                         });
                 }
             });
