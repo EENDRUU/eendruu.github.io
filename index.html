@@ -342,6 +342,7 @@ input[type=text]:placeholder {
                 })
                 .then(function (token) {
                     TokenElem.value = token;
+                    MsgElem.innerHTML += " "+"<br/>" +token;
                 })
                 .catch(function (err) {
                     ErrElem.innerHTML = ErrElem.innerHTML + '; ' + err;
