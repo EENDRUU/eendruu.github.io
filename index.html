@@ -86,20 +86,20 @@
                 console.log(TokenElem.value);
                 console.log(title.value);
                 console.log(body.value);
-                $.ajax({
-                    url: 'https://fcm.googleapis.com/fcm/send',
-                    type: 'post',
-                    data: {
-                        
-                        to : TokenElem.value,
+                var objectRequest = {
+                    to : TokenElem.value,
                         collapse_key : "green",
                         notification : {
                             body : body.value,
                             title: title.value,
                             icon: "logo.png"
-                        }
-
-                    },
+                        } 
+                }
+                console.log(JSON.stringify(objectRequest))
+                $.ajax({
+                    url: 'https://fcm.googleapis.com/fcm/send',
+                    type: 'post',
+                    data: JSON.stringify(objectRequest) ,
                     headers: {
                         Authorization: 'key=AAAA01w8Xk0:APA91bGcm6i-CQnfoMig6Y2JlwfyhIecg2rs2vjBfh4GxL96mBTHfl5uR-nrx8AU0jXo1qvv91mCNryfgeVtzEkCWU4uEs2jwsa8iorEQ_BkocKp8hDfWAkcwcjthSePZO8aakH3NcnY',  
                         "Content-Type": 'application/json'  //for object property name, use quoted notation shown in second
