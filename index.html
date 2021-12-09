@@ -391,7 +391,12 @@ input[type=text]:placeholder {
                     dataType: 'json',
                     success: function (data) {
                         console.info(data);
+                        alert("Success");
+                    },
+                    error:function(error){
+                        console.log(error);
                     }
+                    
                 });
 
             }
