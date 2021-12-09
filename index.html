@@ -1,11 +1,80 @@
 <html>
-    <title>Firebase Messaging Demo</title>
+    <title>Notification Demo</title>
     <style>
-        div {
-            margin-bottom: 15px;
+        html {
+        background-color: #56baed;
+        }
+
+        body {
+        font-family: "Poppins", sans-serif;
+        height: 100vh;
+        }
+
+        a {
+        color: #92badd;
+        display:inline-block;
+        text-decoration: none;
+        font-weight: 400;
+        }
+
+        h2 {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        display:inline-block;
+        margin: 40px 8px 10px 8px; 
+        color: #cccccc;
+        }
+
+
+
+        /* STRUCTURE */
+
+        .wrapper {
+        display: flex;
+        align-items: center;
+        flex-direction: column; 
+        justify-content: center;
+        width: 100%;
+        min-height: 100%;
+        padding: 20px;
+        }
+
+        #formContent {
+        -webkit-border-radius: 10px 10px 10px 10px;
+        border-radius: 10px 10px 10px 10px;
+        background: #fff;
+        padding: 30px;
+        width: 90%;
+        max-width: 450px;
+        position: relative;
+        padding: 0px;
+        -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+        box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+        text-align: center;
+        }
+
+        #formFooter {
+        background-color: #f6f6f6;
+        border-top: 1px solid #dce8f1;
+        padding: 25px;
+        text-align: center;
+        -webkit-border-radius: 0 0 10px 10px;
+        border-radius: 0 0 10px 10px;
+        }
+
+
+
+        /* TABS */
+
+        h2.inactive {
+        color: #cccccc;
         }
     </style>
     <head>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <link rel="shortcut icon" type="image/x-icon" href="logo.png" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
@@ -13,12 +82,37 @@
         <div id="msg"></div>
         <div id="notis"></div>
         <div id="err"></div>
-        <div>
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+              <!-- Tabs Titles -->
+          
+              <!-- Icon -->
+              <div class="fadeIn first">
+                <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+              </div>
+          
+              <!-- Login Form -->
+              <form>
+                <input type="text" id="token" style="display: none;"/>
+                <input type="text" id="title" class="fadeIn second" placeholder="Masukan judul Notifikasi"/>
+                <input type="text" id="body" class="fadeIn third" placeholder="Masukan pesan"/>
+                <input type="submit" class="fadeIn fourth" value="Send Notif">
+              </form>
+          
+              <!-- Remind Passowrd -->
+              <div id="formFooter">
+                <a class="underlineHover" href="#">Forgot Password?</a>
+              </div>
+          
+            </div>
+          </div>
+
+        <!-- <div>
             <input type="text" id="token" style="display: none;"/>
             <input type="text" id="title" placeholder="Masukan judul Notififikasi"/>
             <input type="text" id="body" placeholder="Masukan pesan"/>
             <button id="btnSend" onclick="sendNotif()">Send Notif</button>
-        </div>
+        </div> -->
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
 
