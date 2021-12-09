@@ -351,6 +351,7 @@ input[type=text]:placeholder {
             let enableForegroundNotification = true;
             messaging.onMessage(function (payload) {
                 console.log('Message received. ', payload);
+                alert('Message received. ', payload)
                 if (enableForegroundNotification) {
                     let notification = payload.notification;
                     const notificationOptions = {
