@@ -54,7 +54,7 @@
                     return messaging.getToken();
                 })
                 .then(function (token) {
-                    TokenElem.value = 'Device token is : <br>' + token;
+                    TokenElem.value = token;
                 })
                 .catch(function (err) {
                     ErrElem.innerHTML = ErrElem.innerHTML + '; ' + err;
