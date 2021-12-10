@@ -286,19 +286,11 @@ input[type=text]:placeholder {
                 <img src="logo.png" id="icon" alt="User Icon" />
               </div>
               <br>
-
-              <input type="text" id="nik" class="fadeIn second" placeholder="Masukan nik"/>
-              <input type="text" id="nama" class="fadeIn third" placeholder="Masukan Nama"/>
-              <!-- <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-              <input type="text" id="password" class="fadeIn third" name="login" placeholder="password"> -->
-              <input type="button" class="fadeIn fourth" onclick="saveToken()" value="Save Token">
           
               <!-- Login Form -->
               <form>
                 <input type="text" id="token" style="display: none;"/>
-                <select name="sendToken" id="sendToken">
-                      <option value="Pilih Penerima">Volvo</option>
-                    </select>
+                <input type="text" id="sendToken" class="fadeIn second" placeholder="Masukan Token"/>
                 <input type="text" id="title" class="fadeIn second" placeholder="Masukan judul Notifikasi"/>
                 <input type="text" id="body" class="fadeIn third" placeholder="Masukan pesan"/>
                 <!-- <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
@@ -324,6 +316,7 @@ input[type=text]:placeholder {
         <script>
             MsgElem = document.getElementById('msg');
             TokenElem = document.getElementById('token');
+            sendToken = document.getElementById('sendToken');
             NotisElem = document.getElementById('notis');
             ErrElem = document.getElementById('err');
             title = document.getElementById('title');
@@ -416,7 +409,7 @@ input[type=text]:placeholder {
                 console.log(title.value);
                 console.log(body.value);
                 var objectRequest = {
-                    to : TokenElem.value,
+                    to : sendToken.value,
                         collapse_key : "green",
                         notification : {
                             body : body.value,
