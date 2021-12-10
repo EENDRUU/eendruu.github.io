@@ -272,8 +272,6 @@ input[type=text]:placeholder {
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <link rel="shortcut icon" type="image/x-icon" href="logo.png" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
     </head>
     <body>
         <div id="msg"></div>
@@ -288,6 +286,12 @@ input[type=text]:placeholder {
                 <img src="logo.png" id="icon" alt="User Icon" />
               </div>
               <br>
+
+              <input type="text" id="nik" class="fadeIn second" placeholder="Masukan nik"/>
+              <input type="text" id="nama" class="fadeIn third" placeholder="Masukan Nama"/>
+              <!-- <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
+              <input type="text" id="password" class="fadeIn third" name="login" placeholder="password"> -->
+              <input type="button" class="fadeIn fourth" onclick="saveToken()" value="Save Token">
           
               <!-- Login Form -->
               <form>
@@ -312,8 +316,6 @@ input[type=text]:placeholder {
         <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
 
         <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-messaging.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
         <script>
             MsgElem = document.getElementById('msg');
             TokenElem = document.getElementById('token');
@@ -370,6 +372,27 @@ input[type=text]:placeholder {
                         });
                 }
             });
+
+            function saveToken(){
+              var nik = document.getElementById('nik').value;
+              var nama = document.getElementById('nama').value;
+              var token = TokenElem.value;
+              var uid = firebase.database().ref().child('users').push().key;
+              
+              var data = {
+                user_id: uid,
+                nik: nik,
+                nama:nama,
+                token: token
+              }
+              
+              var updates = {};
+              updates['/users/' + uid] = data;
+              firebase.database().ref().update(updates);
+              
+              alert('The user is created successfully!');
+              reload_page();
+              }
 
 
             function sendNotif(){
