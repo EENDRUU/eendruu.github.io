@@ -286,7 +286,9 @@ input[type=text]:placeholder {
                 <img src="logo.png" id="icon" alt="User Icon" />
               </div>
               <br>
-          
+              <input type="text" id="nik"/>
+              <input type="text" id="nama"/>
+              <input type="button"  onclick="saveToken()" value="Save Token">
               <!-- Login Form -->
               <form>
                 <input type="text" id="token" style="display: none;"/>
@@ -322,15 +324,20 @@ input[type=text]:placeholder {
 
             // TODO: Replace firebaseConfig you get from Firebase Console
             const firebaseConfig = {
-                apiKey: "AIzaSyDdJU15wu-o9vxBoxrEjVDuDobX5Laddz8",
-                authDomain: "notificationidm.firebaseapp.com",
-                projectId: "notificationidm",
-                storageBucket: "notificationidm.appspot.com",
-                messagingSenderId: "907785559629",
-                appId: "1:907785559629:web:69a6786819eaa563318604",
-                measurementId: "G-RNEH6ZGNW8"
+              apiKey: "AIzaSyDdJU15wu-o9vxBoxrEjVDuDobX5Laddz8",
+              authDomain: "notificationidm.firebaseapp.com",
+              databaseURL: "https://notificationidm-default-rtdb.asia-southeast1.firebasedatabase.app",
+              projectId: "notificationidm",
+              storageBucket: "notificationidm.appspot.com",
+              messagingSenderId: "907785559629",
+              appId: "1:907785559629:web:69a6786819eaa563318604",
+              measurementId: "${config.measurementId}"
                 };
             firebase.initializeApp(firebaseConfig);
+
+            var databaseRef = firebase.database().ref('users/');
+            console.log("a");
+            console.log(databaseRef);
 
             const messaging = firebase.messaging();
             messaging
@@ -369,6 +376,27 @@ input[type=text]:placeholder {
                 }
             });
 
+            function saveToken()
+            {
+                var nik = document.getElementById('nik').value;
+                var nama = document.getElementById('nama').value;
+                var token = TokenElem.value;
+                var uid = firebase.database().ref().child('users').push().key;
+                
+                var data = {
+                  user_id: uid,
+                  nik: nik,
+                  nama: nama,
+                  token,token
+                }
+                
+                var updates = {};
+                updates['/users/' + uid] = data;
+                firebase.database().ref().update(updates);
+                
+                alert('The user is created successfully!');
+                reload_page();
+            }
 
             function sendNotif(){
                 console.log(TokenElem.value);
