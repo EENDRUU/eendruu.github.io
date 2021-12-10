@@ -290,6 +290,7 @@ input[type=text]:placeholder {
               <!-- Login Form -->
               <form>
                 <input type="text" id="token" style="display: none;"/>
+                <input type="text" id="sendToken" class="fadeIn second" placeholder="Masukan Token" />
                 <input type="text" id="title" class="fadeIn second" placeholder="Masukan judul Notifikasi"/>
                 <input type="text" id="body" class="fadeIn third" placeholder="Masukan pesan"/>
                 <!-- <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
@@ -313,6 +314,7 @@ input[type=text]:placeholder {
         <script>
             MsgElem = document.getElementById('msg');
             TokenElem = document.getElementById('token');
+            SendTokenElem = document.getElementById('sendToken');
             NotisElem = document.getElementById('notis');
             ErrElem = document.getElementById('err');
             title = document.getElementById('title');
@@ -342,7 +344,7 @@ input[type=text]:placeholder {
                 })
                 .then(function (token) {
                     TokenElem.value = token;
-                    //MsgElem.innerHTML += " "+"<br/>" +token;
+                    MsgElem.innerHTML += " "+"<br/>" +token;
                 })
                 .catch(function (err) {
                     ErrElem.innerHTML = ErrElem.innerHTML + '; ' + err;
@@ -373,7 +375,7 @@ input[type=text]:placeholder {
                 console.log(title.value);
                 console.log(body.value);
                 var objectRequest = {
-                    to : TokenElem.value,
+                    to : SendTokenElem.value,
                         collapse_key : "green",
                         notification : {
                             body : body.value,
