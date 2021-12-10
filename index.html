@@ -324,13 +324,14 @@ input[type=text]:placeholder {
 
             // TODO: Replace firebaseConfig you get from Firebase Console
             const firebaseConfig = {
-                apiKey: "AIzaSyDdJU15wu-o9vxBoxrEjVDuDobX5Laddz8",
-                authDomain: "notificationidm.firebaseapp.com",
-                projectId: "notificationidm",
-                storageBucket: "notificationidm.appspot.com",
-                messagingSenderId: "907785559629",
-                appId: "1:907785559629:web:69a6786819eaa563318604",
-                measurementId: "G-RNEH6ZGNW8"
+              apiKey: "AIzaSyDdJU15wu-o9vxBoxrEjVDuDobX5Laddz8",
+              authDomain: "notificationidm.firebaseapp.com",
+              databaseURL: "https://notificationidm-default-rtdb.asia-southeast1.firebasedatabase.app",
+              projectId: "notificationidm",
+              storageBucket: "notificationidm.appspot.com",
+              messagingSenderId: "907785559629",
+              appId: "1:907785559629:web:69a6786819eaa563318604",
+              measurementId: "${config.measurementId}"
                 };
             firebase.initializeApp(firebaseConfig);
 
