@@ -380,7 +380,7 @@ input[type=text]:placeholder {
             });
             
             const dbRef = firebase.database().ref();
-            get(child(dbRef, `users/${userId}`)).then((snapshot) => {
+            dbRef.child("users").child(userId).get().then((snapshot) => {
               if (snapshot.exists()) {
                 console.log(snapshot.val());
               } else {
