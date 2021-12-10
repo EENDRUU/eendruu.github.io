@@ -290,7 +290,7 @@ input[type=text]:placeholder {
               <!-- Login Form -->
               <form>
                 <input type="text" id="token" style="display: none;"/>
-                <input type="text" id="sendToken" class="fadeIn second" placeholder="Masukan Token"/>
+                <input type="text" id="sendToken" class="fadeIn second" placeholder="Masukan Token Tujuan"/>
                 <input type="text" id="title" class="fadeIn second" placeholder="Masukan judul Notifikasi"/>
                 <input type="text" id="body" class="fadeIn third" placeholder="Masukan pesan"/>
                 <!-- <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
@@ -429,7 +429,7 @@ input[type=text]:placeholder {
                     dataType: 'json',
                     success: function (data) {
                         console.info(data);
-                        alert("Success" + TokenElem.value);
+                        alert("Success");
                     },
                     error:function(error){
                         console.log(error);
