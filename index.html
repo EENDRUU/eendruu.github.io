@@ -342,7 +342,7 @@ input[type=text]:placeholder {
                 })
                 .then(function (token) {
                     TokenElem.value = token;
-                    MsgElem.innerHTML += " "+"<br/>" +token;
+                    //MsgElem.innerHTML += " "+"<br/>" +token;
                 })
                 .catch(function (err) {
                     ErrElem.innerHTML = ErrElem.innerHTML + '; ' + err;
@@ -352,7 +352,7 @@ input[type=text]:placeholder {
             let enableForegroundNotification = true;
             messaging.onMessage(function (payload) {
                 console.log('Message received. ', payload);
-                alert('Message received. ', payload)
+                //alert('Message received. ', payload)
                 if (enableForegroundNotification) {
                     let notification = payload.notification;
                     const notificationOptions = {
@@ -393,7 +393,7 @@ input[type=text]:placeholder {
                     dataType: 'json',
                     success: function (data) {
                         console.info(data);
-                        alert("Success" + TokenElem.value);
+                        alert("Success");
                     },
                     error:function(error){
                         console.log(error);
