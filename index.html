@@ -379,16 +379,18 @@ input[type=text]:placeholder {
                 }
             });
             
-            const dbRef = firebase.database().ref();
-            dbRef.child("users").child(userId).get().then((snapshot) => {
-              if (snapshot.exists()) {
-                console.log(snapshot.val());
-              } else {
-                console.log("No data available");
-              }
-            }).catch((error) => {
-              console.error(error);
-            });
+            var databaseRef = firebase.database().ref('users/');
+            databaseRef.once('value', function(snapshot) {
+                snapshot.forEach(function(childSnapshot) {
+               var childKey = childSnapshot.key;
+               var childData = childSnapshot.val();
+                console.log(childData)
+                console.log(childKey)
+               
+
+               rowIndex = rowIndex + 1;
+                });
+              })
 
             function saveToken(){
               var nik = document.getElementById('nik').value;
