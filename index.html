@@ -296,6 +296,9 @@ input[type=text]:placeholder {
               <!-- Login Form -->
               <form>
                 <input type="text" id="token" style="display: none;"/>
+                <select name="sendToken" id="sendToken">
+                      <option value="Pilih Penerima">Volvo</option>
+                    </select>
                 <input type="text" id="title" class="fadeIn second" placeholder="Masukan judul Notifikasi"/>
                 <input type="text" id="body" class="fadeIn third" placeholder="Masukan pesan"/>
                 <!-- <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
@@ -374,6 +377,17 @@ input[type=text]:placeholder {
                             registration[0].showNotification(notification.title,notificationOptions);
                         });
                 }
+            });
+            
+            const dbRef = ref(getDatabase());
+            get(child(dbRef, `users/${userId}`)).then((snapshot) => {
+              if (snapshot.exists()) {
+                console.log(snapshot.val());
+              } else {
+                console.log("No data available");
+              }
+            }).catch((error) => {
+              console.error(error);
             });
 
             function saveToken(){
