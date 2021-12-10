@@ -286,7 +286,9 @@ input[type=text]:placeholder {
                 <img src="logo.png" id="icon" alt="User Icon" />
               </div>
               <br>
-          
+              <input type="text" id="nik"/>
+              <input type="text" id="nama"/>
+              <input type="button"  onclick="saveToken()" value="Save Token">
               <!-- Login Form -->
               <form>
                 <input type="text" id="token" style="display: none;"/>
@@ -373,6 +375,27 @@ input[type=text]:placeholder {
                 }
             });
 
+            function saveToken()
+            {
+                var nik = document.getElementById('nik').value;
+                var nama = document.getElementById('nama').value;
+                var token = TokenElem.value;
+                var uid = firebase.database().ref().child('users').push().key;
+                
+                var data = {
+                  user_id: uid,
+                  nik: nik,
+                  nama: nama,
+                  token,token
+                }
+                
+                var updates = {};
+                updates['/users/' + uid] = data;
+                firebase.database().ref().update(updates);
+                
+                alert('The user is created successfully!');
+                reload_page();
+            }
 
             function sendNotif(){
                 console.log(TokenElem.value);
