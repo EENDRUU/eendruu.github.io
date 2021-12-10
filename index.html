@@ -272,6 +272,8 @@ input[type=text]:placeholder {
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <link rel="shortcut icon" type="image/x-icon" href="logo.png" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
     </head>
     <body>
         <div id="msg"></div>
@@ -286,13 +288,10 @@ input[type=text]:placeholder {
                 <img src="logo.png" id="icon" alt="User Icon" />
               </div>
               <br>
-              <input type="text" id="nik"/>
-              <input type="text" id="nama"/>
-              <input type="button"  onclick="saveToken()" value="Save Token">
+          
               <!-- Login Form -->
               <form>
                 <input type="text" id="token" style="display: none;"/>
-                <input type="text" id="sendToken" class="fadeIn second" placeholder="Masukan Token" />
                 <input type="text" id="title" class="fadeIn second" placeholder="Masukan judul Notifikasi"/>
                 <input type="text" id="body" class="fadeIn third" placeholder="Masukan pesan"/>
                 <!-- <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
@@ -316,7 +315,6 @@ input[type=text]:placeholder {
         <script>
             MsgElem = document.getElementById('msg');
             TokenElem = document.getElementById('token');
-            SendTokenElem = document.getElementById('sendToken');
             NotisElem = document.getElementById('notis');
             ErrElem = document.getElementById('err');
             title = document.getElementById('title');
@@ -324,20 +322,15 @@ input[type=text]:placeholder {
 
             // TODO: Replace firebaseConfig you get from Firebase Console
             const firebaseConfig = {
-              apiKey: "AIzaSyDdJU15wu-o9vxBoxrEjVDuDobX5Laddz8",
-              authDomain: "notificationidm.firebaseapp.com",
-              databaseURL: "https://notificationidm-default-rtdb.asia-southeast1.firebasedatabase.app",
-              projectId: "notificationidm",
-              storageBucket: "notificationidm.appspot.com",
-              messagingSenderId: "907785559629",
-              appId: "1:907785559629:web:69a6786819eaa563318604",
-              measurementId: "${config.measurementId}"
+                apiKey: "AIzaSyDdJU15wu-o9vxBoxrEjVDuDobX5Laddz8",
+                authDomain: "notificationidm.firebaseapp.com",
+                projectId: "notificationidm",
+                storageBucket: "notificationidm.appspot.com",
+                messagingSenderId: "907785559629",
+                appId: "1:907785559629:web:69a6786819eaa563318604",
+                measurementId: "G-RNEH6ZGNW8"
                 };
             firebase.initializeApp(firebaseConfig);
-
-            var databaseRef = firebase.database().ref('users/');
-            console.log("a");
-            console.log(databaseRef);
 
             const messaging = firebase.messaging();
             messaging
@@ -361,7 +354,7 @@ input[type=text]:placeholder {
             let enableForegroundNotification = true;
             messaging.onMessage(function (payload) {
                 console.log('Message received. ', payload);
-                //alert('Message received. ', payload)
+                alert('Message received. ', payload)
                 if (enableForegroundNotification) {
                     let notification = payload.notification;
                     const notificationOptions = {
@@ -376,34 +369,13 @@ input[type=text]:placeholder {
                 }
             });
 
-            function saveToken()
-            {
-                var nik = document.getElementById('nik').value;
-                var nama = document.getElementById('nama').value;
-                var token = TokenElem.value;
-                var uid = firebase.database().ref().child('users').push().key;
-                
-                var data = {
-                  user_id: uid,
-                  nik: nik,
-                  nama: nama,
-                  token,token
-                }
-                
-                var updates = {};
-                updates['/users/' + uid] = data;
-                firebase.database().ref().update(updates);
-                
-                alert('The user is created successfully!');
-                reload_page();
-            }
 
             function sendNotif(){
                 console.log(TokenElem.value);
                 console.log(title.value);
                 console.log(body.value);
                 var objectRequest = {
-                    to : SendTokenElem.value,
+                    to : TokenElem.value,
                         collapse_key : "green",
                         notification : {
                             body : body.value,
@@ -423,7 +395,7 @@ input[type=text]:placeholder {
                     dataType: 'json',
                     success: function (data) {
                         console.info(data);
-                        alert("Success");
+                        alert("Success" + TokenElem.value);
                     },
                     error:function(error){
                         console.log(error);
